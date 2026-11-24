@@ -1,0 +1,380 @@
+/* =====================================================
+   GEAR SECTION: Full-width layout with large product cards
+   ===================================================== */
+
+/* Ensure the rental section is full-width, not squeezed into columns */
+.rental.section-pad,
+.rental {
+  display: block !important;
+  width: 100% !important;
+  padding: 0 !important;
+  background: #0b0a08;
+}
+
+.rental-heading-wrap {
+  display: block;
+  width: 100%;
+}
+
+/* Keep the section heading clean, sleek and well-proportioned (not giant) */
+.rental-heading-wrap .rental-heading,
+.rental-heading {
+  position: relative;
+  width: 100%;
+  min-height: 260px !important;
+  padding: 56px clamp(24px, 6vw, 92px) 46px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-image:
+    linear-gradient(90deg, rgba(7,7,6,.92), rgba(7,7,6,.75) 48%, rgba(7,7,6,.38)),
+    linear-gradient(0deg, rgba(7,7,6,.55), transparent 70%),
+    url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1800&q=88');
+  background-size: cover;
+  background-position: center 46%;
+}
+
+.rental-heading h2 {
+  font-size: clamp(44px, 5.5vw, 76px) !important;
+  line-height: .98 !important;
+  margin: 18px 0 16px !important;
+  max-width: 720px;
+}
+
+.rental-heading > p:not(.eyebrow) {
+  max-width: 520px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: #b7b3aa;
+  margin: 0 0 22px;
+}
+
+/* Hide redundant secondary banner so it doesn't inflate the heading area */
+.rental-side-img {
+  display: none !important;
+}
+
+/* =====================================================
+   GEAR PRODUCTS GRID: Spacious, prominent cards on desktop
+   ===================================================== */
+
+.rental-products {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 22px !important;
+  padding: 38px clamp(24px, 6vw, 92px) 48px !important;
+  background: #0d0c0a;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 1200px) and (min-width: 761px) {
+  .rental-products {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .rental-products {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+    padding: 24px 6vw 34px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .rental-products {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+/* Card container */
+.rental-products .rental-item {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  border: 1px solid rgba(217, 173, 85, .28) !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  background: linear-gradient(145deg, #181613, #0f0e0c 75%) !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,.35) !important;
+  transition: transform .4s cubic-bezier(.2,.7,.2,1), border-color .35s, box-shadow .4s !important;
+}
+
+.rental-products .rental-item:hover {
+  transform: translateY(-8px) !important;
+  border-color: rgba(230, 184, 88, .75) !important;
+  box-shadow: 0 20px 42px rgba(0,0,0,.5), 0 0 24px rgba(217,173,85,.12) !important;
+}
+
+/* =====================================================
+   GEAR PRODUCT IMAGES: Big, high-clarity product showcases
+   ===================================================== */
+
+.gear-photo {
+  display: block !important;
+  width: 100% !important;
+  height: clamp(230px, 20vw, 290px) !important;
+  min-height: 230px !important;
+  background-color: #1a1915;
+  cursor: pointer;
+  transition: transform .6s cubic-bezier(.2,.7,.2,1), filter .4s !important;
+  filter: saturate(.9);
+}
+
+.rental-products .rental-item:hover .gear-photo {
+  transform: scale(1.045) !important;
+  filter: saturate(1.05) !important;
+}
+
+/* Camera photos fill the frame cleanly */
+.gear-r1,
+.gear-r2,
+.gear-stand,
+.gear-light,
+.gear-audio,
+.gear-camera,
+.gear-lens {
+  background-size: cover !important;
+  background-position: center !important;
+  background-color: #1a1915 !important;
+}
+
+/* Studio product photos (gimbal and drone) displayed fully without clipping */
+.gear-gimbal,
+.gear-drone {
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-color: #ffffff !important;
+}
+
+/* Product Info text & buttons - firmly left-aligned */
+.rental-info {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  padding: 20px 22px 22px !important;
+  background: transparent !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.rental-info > small {
+  color: var(--gold, #d9ad55) !important;
+  font-size: 8.5px !important;
+  letter-spacing: .16em !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: left !important;
+  align-self: flex-start !important;
+  width: 100% !important;
+}
+
+.rental-info > strong {
+  font: 500 clamp(20px, 1.8vw, 26px)/1.2 var(--serif, serif) !important;
+  margin-top: 8px !important;
+  color: #f4f0e8 !important;
+  text-align: left !important;
+  align-self: flex-start !important;
+  width: 100% !important;
+}
+
+.rental-info > em {
+  font: normal 11px/1.55 var(--sans, sans-serif) !important;
+  color: #b0aba1 !important;
+  margin-top: 7px !important;
+  min-height: 34px;
+  text-align: left !important;
+  align-self: flex-start !important;
+  width: 100% !important;
+}
+
+/* Price tag in UGX - left-aligned with bold gold highlight */
+.hire-price {
+  display: flex !important;
+  align-items: baseline !important;
+  justify-content: flex-start !important;
+  gap: 6px !important;
+  margin: 16px 0 14px !important;
+  text-align: left !important;
+  align-self: flex-start !important;
+  width: 100% !important;
+}
+
+.hire-price strong {
+  color: var(--gold, #d9ad55) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  letter-spacing: .01em !important;
+  font-family: var(--sans, sans-serif) !important;
+}
+
+.hire-price small {
+  font-size: 11px !important;
+  color: #9a9489 !important;
+  font-weight: 400 !important;
+}
+
+/* Hire Button - fixed so text NEVER disappears on hover */
+.hire-button {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  margin-top: auto !important;
+  padding: 12px 18px !important;
+  border: 1px solid rgba(217, 173, 85, .65) !important;
+  border-radius: 99px !important;
+  background: transparent !important;
+  text-decoration: none !important;
+  box-sizing: border-box !important;
+  transition: background-color .25s ease, border-color .25s ease, transform .25s ease !important;
+  cursor: pointer !important;
+  overflow: hidden !important;
+}
+
+/* Disable any sliding overlay that could mask or cover the text */
+.hire-button::before {
+  display: none !important;
+  content: none !important;
+}
+
+.hire-button span {
+  color: #edc367 !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: .04em !important;
+  display: inline-block !important;
+  transition: color .25s ease !important;
+  position: relative !important;
+  z-index: 2 !important;
+  text-align: left !important;
+}
+
+.hire-button b {
+  color: #edc367 !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  display: inline-block !important;
+  transition: transform .25s ease, color .25s ease !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Hover state: background turns gold, text & arrow turn crisp dark */
+.hire-button:hover {
+  background-color: var(--gold, #d9ad55) !important;
+  border-color: var(--gold, #d9ad55) !important;
+  transform: translateY(-2px) !important;
+}
+
+.hire-button:hover span,
+.hire-button:hover b {
+  color: #17130c !important;
+}
+
+.hire-button:hover b {
+  transform: translate(3px, -3px) !important;
+}
+
+.rental-note {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin: 0 !important;
+  padding: 0 clamp(24px, 6vw, 92px) 36px !important;
+  color: #aaa397 !important;
+  font-size: 10px !important;
+  background: #0d0c0a !important;
+}
+
+/* =====================================================
+   LIGHTBOX: Fullscreen image viewer
+   ===================================================== */
+
+#gear-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(5, 5, 4, .96);
+  backdrop-filter: blur(18px);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  animation: lb-in .28s cubic-bezier(.2,.7,.2,1) forwards;
+}
+
+#gear-lightbox.is-open {
+  display: flex;
+}
+
+@keyframes lb-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+#gear-lightbox .lb-img {
+  max-width: 90vw;
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 30px 90px rgba(0,0,0,.7);
+  animation: lb-scale .32s cubic-bezier(.2,.7,.2,1) forwards;
+}
+
+@keyframes lb-scale {
+  from { transform: scale(.93); }
+  to   { transform: scale(1); }
+}
+
+/* When the gear-photo div is used (no <img>), show the bg as a large box */
+#gear-lightbox .lb-bg {
+  width: min(90vw, 1100px);
+  height: min(82vh, 700px);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 30px 90px rgba(0,0,0,.7);
+  animation: lb-scale .32s cubic-bezier(.2,.7,.2,1) forwards;
+}
+
+#gear-lightbox .lb-label {
+  font-size: 10px;
+  letter-spacing: .18em;
+  color: rgba(220, 184, 100, .78);
+  text-transform: uppercase;
+}
+
+#gear-lightbox .lb-close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 50%;
+  background: rgba(255,255,255,.07);
+  color: #f4f0e8;
+  font-size: 22px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background .2s, border-color .2s;
+  line-height: 1;
+}
+
+#gear-lightbox .lb-close:hover {
+  background: rgba(217,173,85,.18);
+  border-color: var(--gold, #d9ad55);
+  color: var(--gold, #d9ad55);
+}
