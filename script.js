@@ -97,3 +97,67 @@ const activeSectionObserver = new IntersectionObserver(entries => {
   });
 }, { rootMargin: '-38% 0px -52% 0px', threshold: 0 });
 mobileSections.forEach(item => activeSectionObserver.observe(item.section));
+
+
+// ===== Fullscreen lightbox for gear product images =====
+(function () {
+  const lightbox = document.getElementById('gear-lightbox');
+  if (!lightbox) return;
+
+  const lbBg    = lightbox.querySelector('.lb-bg');
+  const lbLabel = lightbox.querySelector('.lb-label');
+  const lbClose = lightbox.querySelector('.lb-close');
+
+  // Map CSS class → actual image URL (matches the gear-photo backgrounds)
+  function getImageUrl(el) {
+    const bg = getComputedStyle(el).backgroundImage;
+    const match = bg.match(/url\(["']?([^"')]+)["']?\)/);
+    return match ? match[1] : '';
+  }
+
+  function open(photo) {
+    const url = getImageUrl(photo);
+    if (!url) return;
+
+    // Find the product name from the sibling rental-info
+    const item = photo.closest('.rental-item');
+    const name = item ? (item.querySelector('.rental-info > strong') || {}).textContent || '' : '';
+
+    lbBg.style.backgroundImage = 'url("' + url + '")';
+    lbLabel.textContent = name;
+    lightbox.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lightbox.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  // Listen for clicks on any gear-photo inside rental-products
+  document.querySelectorAll('.rental-products .gear-photo[data-lightbox]').forEach(function (photo) {
+    photo.style.cursor = 'pointer';
+    photo.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      open(photo);
+    });
+    // Keyboard support
+    photo.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(photo); }
+    });
+  });
+
+  // Close on X button
+  lbClose.addEventListener('click', close);
+
+  // Close on backdrop click
+  lightbox.addEventListener('click', function (e) {
+    if (e.target === lightbox) close();
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('is-open')) close();
+  });
+})();
